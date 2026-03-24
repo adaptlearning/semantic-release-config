@@ -27,7 +27,19 @@ Replace any inline `release` config with:
 }
 ```
 
-### 3. Use the reusable workflow
+### 3. Remove redundant devDependencies
+
+The following are now provided by this package or the `semantic-release` package, and can be removed from your `devDependencies`:
+
+- `semantic-release`
+- `@semantic-release/commit-analyzer`
+- `@semantic-release/git`
+- `@semantic-release/github`
+- `@semantic-release/npm`
+- `@semantic-release/release-notes-generator`
+- `conventional-changelog-eslint`
+
+### 4. Use the reusable workflow
 
 Replace your `.github/workflows/releases.yml` with:
 
@@ -50,15 +62,9 @@ jobs:
     uses: adaptlearning/semantic-release-config/.github/workflows/release.yml@master
 ```
 
-The `permissions` block is required in the calling workflow. GitHub Actions only grants permissions that are explicitly listed — once a `permissions` key is present, any unlisted permission defaults to `none`. These are needed for semantic-release to push tags, comment on issues/PRs, and for trusted publishing via OIDC.
-
-### 4. Remove redundant devDependencies
-
-The following are now provided by this package and can be removed from your `devDependencies`:
-
-- `semantic-release`
-- `@semantic-release/git`
-- `conventional-changelog-eslint`
+> **Important note on permissions:**
+>
+> The `permissions` block is required in the calling workflow. GitHub Actions only grants permissions that are explicitly listed — once a `permissions` key is present, any unlisted permission defaults to `none`. These are needed for semantic-release to push tags, comment on issues/PRs, and for trusted publishing via OIDC.
 
 ## Trusted publishing
 
