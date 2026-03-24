@@ -56,4 +56,24 @@ The following are now provided by this package and can be removed from your `dev
 
 ## Trusted publishing
 
-The reusable workflow uses [trusted publishing](https://docs.npmjs.com/generating-provenance-statements#publishing-packages-with-provenance-via-github-actions) via OIDC — no `NPM_TOKEN` secret is needed.
+Trusted publishing lets GitHub Actions publish to npm without long-lived access tokens. Instead, npm verifies the identity of the GitHub Actions workflow using OpenID Connect (OIDC). This means no `NPM_TOKEN` secret to manage or rotate, and published packages include a provenance attestation linking them back to the exact source commit and workflow run.
+
+### GitHub repo setup
+
+The reusable workflow already includes the required permissions — no additional configuration is needed in your repo. The relevant settings in the workflow are:
+
+- `id-token: write` — allows the workflow to request an OIDC token
+- `contents: write` — allows semantic-release to create tags and GitHub releases
+
+### npm package setup
+
+Each npm package needs to be linked to its GitHub repo on npmjs.com:
+
+1. Go to **npmjs.com** > your package > **Settings** > **Publishing access**
+2. Under **Trusted publishing**, click **Add new provider**
+3. Configure the provider:
+   - **Registry**: `GitHub Actions`
+   - **Repository owner**: the GitHub org (e.g. `adapt-security`)
+   - **Repository name**: the repo name (e.g. `adapt-authoring-core`)
+   - **Workflow filename**: `releases.yml`
+4. Save — the package can now only be published by the matching workflow
