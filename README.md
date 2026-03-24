@@ -42,9 +42,9 @@ on:
 jobs:
   release:
     uses: adaptlearning/semantic-release-config/.github/workflows/release.yml@master
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 ```
+
+The reusable workflow uses [trusted publishing](https://docs.npmjs.com/generating-provenance-statements#publishing-packages-with-provenance-via-github-actions) via OIDC — no `NPM_TOKEN` secret is needed. Make sure your npm package is configured to trust your GitHub repo on npmjs.com.
 
 ### 4. Remove redundant devDependencies
 

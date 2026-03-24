@@ -1,5 +1,5 @@
 {
-  "name": "@adapt-security/semantic-release-config",
+  "name": "@adaptlearning/semantic-release-config",
   "version": "1.0.0",
   "description": "Shared semantic-release config for adapt-authoring modules",
   "type": "module",
