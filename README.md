@@ -39,12 +39,18 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+
 jobs:
   release:
     uses: adaptlearning/semantic-release-config/.github/workflows/release.yml@master
 ```
 
-We use trusted publishing for npm, see below for more details.
+The `permissions` block is required in the calling workflow. GitHub Actions only grants permissions that are explicitly listed — once a `permissions` key is present, any unlisted permission defaults to `none`. These are needed for semantic-release to push tags, comment on issues/PRs, and for trusted publishing via OIDC.
 
 ### 4. Remove redundant devDependencies
 
@@ -60,10 +66,12 @@ Trusted publishing lets GitHub Actions publish to npm without long-lived access 
 
 ### GitHub repo setup
 
-The reusable workflow already includes the required permissions — no additional configuration is needed in your repo. The relevant settings in the workflow are:
+The calling workflow must include the following permissions (see step 3 above):
 
-- `id-token: write` — allows the workflow to request an OIDC token
-- `contents: write` — allows semantic-release to create tags and GitHub releases
+- `contents: write` — push version tags and create GitHub releases
+- `issues: write` — comment on released issues
+- `pull-requests: write` — comment on released pull requests
+- `id-token: write` — request an OIDC token for trusted publishing
 
 ### npm package setup
 
