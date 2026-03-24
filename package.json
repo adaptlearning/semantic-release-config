@@ -1,0 +1,14 @@
+{
+  "name": "@adapt-security/semantic-release-config",
+  "version": "1.0.0",
+  "description": "Shared semantic-release config for adapt-authoring modules",
+  "type": "module",
+  "main": "index.js",
+  "license": "GPL-3.0",
+  "repository": "github:adapt-security/semantic-release-config",
+  "dependencies": {
+    "@semantic-release/git": "^10.0.1",
+    "conventional-changelog-eslint": "^6.0.0",
+    "semantic-release": "^25.0.2"
+  }
+}
