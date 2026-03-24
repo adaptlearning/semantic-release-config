@@ -44,7 +44,7 @@ jobs:
     uses: adaptlearning/semantic-release-config/.github/workflows/release.yml@master
 ```
 
-The reusable workflow uses [trusted publishing](https://docs.npmjs.com/generating-provenance-statements#publishing-packages-with-provenance-via-github-actions) via OIDC — no `NPM_TOKEN` secret is needed. Make sure your npm package is configured to trust your GitHub repo on npmjs.com.
+We use trusted publishing for npm, see below for more details.
 
 ### 4. Remove redundant devDependencies
 
@@ -53,3 +53,7 @@ The following are now provided by this package and can be removed from your `dev
 - `semantic-release`
 - `@semantic-release/git`
 - `conventional-changelog-eslint`
+
+## Trusted publishing
+
+The reusable workflow uses [trusted publishing](https://docs.npmjs.com/generating-provenance-statements#publishing-packages-with-provenance-via-github-actions) via OIDC — no `NPM_TOKEN` secret is needed.
