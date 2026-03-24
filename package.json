@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "license": "GPL-3.0",
-  "repository": "github:adapt-security/semantic-release-config",
+  "repository": "github:adaptlearning/semantic-release-config",
   "dependencies": {
     "@semantic-release/git": "^10.0.1",
     "conventional-changelog-eslint": "^6.0.0",
