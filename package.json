@@ -1,7 +1,7 @@
 {
   "name": "@adaptlearning/semantic-release-config",
   "version": "1.0.0",
-  "description": "Shared semantic-release config for adapt-authoring modules",
+  "description": "Shared semantic-release config for Adapt repos",
   "type": "module",
   "main": "index.js",
   "license": "GPL-3.0",
