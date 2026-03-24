@@ -8,5 +8,3 @@ on:
 jobs:
   release:
     uses: ./.github/workflows/release.yml
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

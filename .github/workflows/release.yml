@@ -7,9 +7,6 @@ on:
         description: Node.js version to use
         type: string
         default: 'lts/*'
-    secrets:
-      NPM_TOKEN:
-        required: false
 
 jobs:
   release:
@@ -34,5 +31,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
