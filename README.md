@@ -12,7 +12,7 @@ Shared [semantic-release](https://github.com/semantic-release/semantic-release) 
 ### 1. Install the config package
 
 ```bash
-npm install --save-dev @adapt-security/semantic-release-config
+npm install --save-dev @adaptlearning/semantic-release-config
 ```
 
 ### 2. Add release config to `package.json`
@@ -22,7 +22,7 @@ Replace any inline `release` config with:
 ```json
 {
   "release": {
-    "extends": "@adapt-security/semantic-release-config"
+    "extends": "@adaptlearning/semantic-release-config"
   }
 }
 ```
