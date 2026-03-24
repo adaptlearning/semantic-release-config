@@ -1,4 +1,4 @@
-# @adapt-security/semantic-release-config
+# Adapt semantic-release-config
 
 Shared [semantic-release](https://github.com/semantic-release/semantic-release) configuration and reusable GitHub Actions workflow for adapt-authoring modules.
 
