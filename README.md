@@ -65,6 +65,8 @@ jobs:
 > **Important note on permissions:**
 >
 > The `permissions` block is required in the calling workflow. GitHub Actions only grants permissions that are explicitly listed — once a `permissions` key is present, any unlisted permission defaults to `none`. These are needed for semantic-release to push tags, comment on issues/PRs, and for trusted publishing via OIDC.
+>
+> If publishing to GitHub Packages instead of the public npm registry, an additional `packages: write` permission is required — see [Publishing to GitHub Packages](#publishing-to-github-packages).
 
 ## Trusted publishing
 
@@ -91,3 +93,37 @@ Each npm package needs to be linked to its GitHub repo on npmjs.com:
    - **Repository name**: the repo name (e.g. `adapt-authoring-core`)
    - **Workflow filename**: `releases.yml`
 4. Save — the package can now only be published by the matching workflow
+
+## Publishing to GitHub Packages
+
+GitHub Packages does not support OIDC trusted publishing, so token-based authentication is used instead. The reusable workflow sets `NPM_TOKEN` to the job's `GITHUB_TOKEN` automatically — no secret to configure.
+
+### GitHub repo setup
+
+Add `packages: write` to the calling workflow's `permissions` block, in addition to those listed in step 4:
+
+```yaml
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  id-token: write
+  packages: write
+```
+
+The calling workflow's permissions act as a ceiling for the reusable workflow — without `packages: write` in the caller, publishing will fail with a 403 even though the reusable workflow declares it.
+
+### npm package setup
+
+- Use a scoped name matching the GitHub org (e.g. `@adaptlearning/my-plugin`)
+- Add a `publishConfig` block to `package.json` pointing at GitHub Packages:
+
+```json
+"publishConfig": {
+  "registry": "https://npm.pkg.github.com"
+}
+```
+
+- Ensure the `repository` field in `package.json` matches the GitHub repo
+
+See [GitHub's npm registry docs](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-npm-registry) for more detail.
