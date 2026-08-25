@@ -9,13 +9,12 @@ on:
         default: 'lts/*'
 
 jobs:
+  # Permissions are intentionally not declared here. A called workflow's job
+  # cannot request more permissions than the caller grants, so any permission
+  # listed here that a caller omits causes the run to fail at startup. Omitting
+  # the block lets the job inherit the caller's permissions, which act as the
+  # ceiling. See the README for the permissions each caller must grant.
   release:
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
-      id-token: write
-      packages: write
     name: Release
     runs-on: ubuntu-latest
     steps:
