@@ -111,7 +111,7 @@ permissions:
   packages: write
 ```
 
-The calling workflow's permissions act as a ceiling for the reusable workflow — without `packages: write` in the caller, publishing will fail with a 403 even though the reusable workflow declares it.
+The reusable workflow does not declare permissions of its own; it inherits whatever the caller grants. Without `packages: write` in the caller, publishing will fail with a 403.
 
 ### npm package setup
 
