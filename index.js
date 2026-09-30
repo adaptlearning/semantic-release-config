@@ -1,6 +1,11 @@
 export default {
   plugins: [
-    ['@semantic-release/commit-analyzer', { preset: 'eslint' }],
+    ['@semantic-release/commit-analyzer', {
+      preset: 'eslint',
+      releaseRules: [
+        { tag: 'Upgrade', release: 'patch' }
+      ]
+    }],
     ['@semantic-release/release-notes-generator', { preset: 'eslint' }],
     ['@semantic-release/npm', { provenance: true }],
     '@semantic-release/github',
