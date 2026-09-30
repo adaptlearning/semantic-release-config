@@ -1,6 +1,6 @@
 {
   "name": "@adaptlearning/semantic-release-config",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "Shared semantic-release config for Adapt repos",
   "type": "module",
   "main": "index.js",
